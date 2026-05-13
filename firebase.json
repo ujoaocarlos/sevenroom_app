@@ -1,0 +1,39 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "sevenroom-a",
+          "appId": "1:713750447434:android:193468e2a213a34169adb3",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "sevenroom-a",
+          "configurations": {
+            "android": "1:713750447434:android:193468e2a213a34169adb3",
+            "ios": "1:713750447434:ios:4e90b67fe8501c0969adb3",
+            "macos": "1:713750447434:ios:4e90b67fe8501c0969adb3",
+            "web": "1:713750447434:web:1265a60657a6c61669adb3",
+            "windows": "1:713750447434:web:65301317fe985a7369adb3"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

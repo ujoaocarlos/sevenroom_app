@@ -1,0 +1,31 @@
+# Flutter
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+
+# Android
+*.iml
+.gradle/
+local.properties
+
+# iOS
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/flutter_assets/
+**/ios/ServiceDefinitions.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.suo
+
+# Firebase (opcional - não enviar options com dados sensíveis)
+# lib/firebase_options.dart
+
+# Mac
+.DS_Store
