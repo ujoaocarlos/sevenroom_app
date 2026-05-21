@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+import 'providers/theme_provider.dart';
 import 'screens/splash_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
@@ -18,61 +19,49 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final prefs = await SharedPreferences.getInstance();
-  final isDarkMode = prefs.getBool('isDarkMode') ?? false;
-  runApp(SevenRoomApp(isDarkMode: isDarkMode));
+  
+  final themeProvider = ThemeProvider();
+  await themeProvider.init();
+  
+  runApp(
+    ChangeNotifierProvider<ThemeProvider>(
+      create: (_) => themeProvider,
+      child: const SevenRoomApp(),
+    ),
+  );
 }
 
-class SevenRoomApp extends StatefulWidget {
-  final bool isDarkMode;
-  const SevenRoomApp({super.key, required this.isDarkMode});
-
-  @override
-  State<SevenRoomApp> createState() => _SevenRoomAppState();
-}
-
-class _SevenRoomAppState extends State<SevenRoomApp> {
-  late bool _isDarkMode;
-
-  @override
-  void initState() {
-    super.initState();
-    _isDarkMode = widget.isDarkMode;
-  }
-
-  void toggleTheme(bool value) async {
-    setState(() => _isDarkMode = value);
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isDarkMode', value);
-  }
+class SevenRoomApp extends StatelessWidget {
+  const SevenRoomApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'SevenRoom',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/register': (context) => const RegisterScreen(),
-        '/home': (context) {
-          final args = ModalRoute.of(context)!.settings.arguments as String;
-          return HomeScreen(userName: args);
-        },
-        '/rooms': (context) => const RoomsListScreen(),
-        '/schedule': (context) => ScheduleScreen(
-          roomId: ModalRoute.of(context)!.settings.arguments as String,
-        ),
-        '/my_reservations': (context) => const MyReservationsScreen(),
-        '/admin': (context) => const AdminPanelScreen(),
-        '/profile': (context) => ProfileScreen(
-          onThemeToggle: toggleTheme,
-          currentDarkMode: _isDarkMode,
-        ),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, _) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'SevenRoom',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: themeProvider.themeMode,
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const SplashScreen(),
+            '/login': (context) => const LoginScreen(),
+            '/register': (context) => const RegisterScreen(),
+            '/home': (context) {
+              final args = ModalRoute.of(context)!.settings.arguments as String;
+              return HomeScreen(userName: args);
+            },
+            '/rooms': (context) => const RoomsListScreen(),
+            '/schedule': (context) => ScheduleScreen(
+              roomId: ModalRoute.of(context)!.settings.arguments as String,
+            ),
+            '/my_reservations': (context) => const MyReservationsScreen(),
+            '/admin': (context) => const AdminPanelScreen(),
+            '/profile': (context) => const ProfileScreen(),
+          },
+        );
       },
     );
   }
