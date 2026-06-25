@@ -1,0 +1,21 @@
+{
+  "name": "sevenroom-email-api",
+  "version": "1.0.0",
+  "description": "Email API for SevenRoom using Gmail SMTP",
+  "private": true,
+  "main": "server.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check routes/email.js && node --check services/smtpService.js && node --check services/firebaseAuthService.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "firebase-admin": "^12.7.0",
+    "nodemailer": "^6.10.1"
+  }
+}

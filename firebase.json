@@ -1,0 +1,40 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "app-7room",
+          "appId": "1:438484145708:android:76a79ce42ceabcc9176389",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "app-7room",
+          "configurations": {
+            "android": "1:438484145708:android:76a79ce42ceabcc9176389",
+            "web": "1:438484145708:web:88a5815371398344176389"
+          }
+        }
+      }
+    }
+  }
+}

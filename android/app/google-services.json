@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "438484145708",
+    "project_id": "app-7room",
+    "storage_bucket": "app-7room.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438484145708:android:76a79ce42ceabcc9176389",
+        "android_client_info": {
+          "package_name": "com.example.app_7room"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438484145708-av559saq7uj01bnfc85i76fcpmss7vi7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA4jU_5FbA9B67XPmxCxCC5Zq8J_EvDZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438484145708-av559saq7uj01bnfc85i76fcpmss7vi7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "438484145708-qt7ku78sqa4plge4oenijh6319oosgmm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.app7room"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
