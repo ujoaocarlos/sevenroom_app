@@ -26,4 +26,10 @@ async function verifyFirebaseToken(token) {
   return admin.auth().verifyIdToken(token);
 }
 
-module.exports = { verifyFirebaseToken };
+async function getFirebaseUserRole(uid) {
+  initializeFirebase();
+  const snapshot = await admin.firestore().collection("users").doc(uid).get();
+  return snapshot.exists ? snapshot.data().role || "user" : "user";
+}
+
+module.exports = { verifyFirebaseToken, getFirebaseUserRole };

@@ -1,7 +1,7 @@
 {
   "name": "sevenroom-email-api",
   "version": "1.0.0",
-  "description": "Email API for SevenRoom using Gmail SMTP",
+  "description": "Email API for SevenRoom using Gmail API, Resend, or SMTP",
   "private": true,
   "main": "server.js",
   "engines": {
